@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Connect | Register</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+  <div class="auth-container">
+    <h2>Create Student Account</h2>
+
+    <input type="text" id="matric_no" placeholder="Matric Number" required>
+    <input type="text" id="fullname" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email Address" required>
+    <input type="password" id="password" placeholder="Password" required>
+
+    <button id="registerBtn" class="login">Register</button>
+    <p id="registerMessage" class="message"></p>
+  
+
+    <p>Already have an account? <a href="login.html">Login here</a></p>
+    <a href="index.html">Back</a>
+  </div>
+
+  
+
+
+<script src="script.js"></script>
+<script>document.getElementById("registerBtn").addEventListener("click", async () => {
+  const matric_no = document.getElementById("matric_no").value.trim();
+  const fullname = document.getElementById("fullname").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const message = document.getElementById("registerMessage");
+
+  if (!matric_no || !fullname || !email || !password) {
+    message.textContent = "❌ Please fill in all fields.";
+    message.className = "message error";
+    return;
+  }
+
+  message.textContent = "⏳ Registering...";
+  message.className = "message";
+
+  const res = await fetch("http://localhost:3000/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ matric_no, fullname, email, password })
+  });
+
+  const data = await res.json();
+
+  if (data.success) {
+    message.textContent = "✅ Registration successful!";
+    message.classList.add("success");
+    setTimeout(() => (window.location.href = "login.html"), 1500);
+  } else {
+    message.textContent = `❌ ${data.message || "Registration failed. Try again."}`;
+    message.classList.add("error");
+  }
+});
+</script>
+</body>
+</html>

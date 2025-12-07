@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    /* ===== FUTURISTIC LOGIN PAGE ===== */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      background: radial-gradient(circle at top left, #020611, #030b1a 70%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #e6ecff;
+      overflow: hidden;
+    }
+
+    /* Title */
+    h1 {
+      color: #00bfff;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    /* Switch Buttons */
+    .switch-buttons {
+      display: flex;
+      width: 260px;
+      border: 1px solid rgba(0,191,255,0.4);
+      border-radius: 12px;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 15px rgba(0,191,255,0.15);
+      margin-bottom: 30px;
+    }
+
+    .switch-buttons button {
+      flex: 1;
+      padding: 12px;
+      font-size: 16px;
+      background: transparent;
+      color: #00bfff;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .switch-buttons button.active {
+      background: linear-gradient(90deg, #00bfff, #0077ff);
+      color: white;
+      box-shadow: 0 0 15px rgba(0,191,255,0.3);
+    }
+
+    /* Form Container */
+    .form-box {
+      display: none;
+      flex-direction: column;
+      gap: 15px;
+      width: 360px;
+      padding: 40px 30px;
+      background: rgba(10, 20, 40, 0.85);
+      border-radius: 15px;
+      border: 1px solid rgba(0,191,255,0.3);
+      box-shadow: 0 0 25px rgba(0,191,255,0.2);
+      backdrop-filter: blur(15px);
+      animation: fadeIn 0.6s ease;
+    }
+
+    .form-box.active {
+      display: flex;
+    }
+
+    /* Inputs */
+    input {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(0,191,255,0.3);
+      background: rgba(0, 10, 25, 0.7);
+      color: #00bfff;
+      font-size: 15px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      box-shadow: 0 0 10px rgba(0,191,255,0.4);
+      border-color: #00bfff;
+    }
+
+    input::placeholder {
+      color: rgba(0,191,255,0.5);
+    }
+
+    /* Login Button */
+    button.login {
+      background: linear-gradient(90deg, #00bfff, #0077ff);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    button.login:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0,191,255,0.3);
+    }
+
+    /* Back Link */
+    a {
+      color: #00bfff;
+      text-align: center;
+      margin-top: 5px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      text-shadow: 0 0 10px #00bfff;
+      .message {
+  margin-top: 5px;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.message.success {
+  color: #2ecc71;
+}
+
+.message.error {
+  color: #e74c3c;
+}
+
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+ </head>
+
+  <body class="auth-page">
+  <div class="auth-container">
+    <h2>Login</h2>
+
+    <!-- Switch between Admin / Student -->
+    <div class="switch-buttons">
+      <button id="adminBtn" class="active">Admin</button>
+      <button id="studentBtn">Student</button>
+    </div>
+
+    <!-- Admin Login Form -->
+    <div id="adminForm" class="form-box active">
+      <input type="text" id="adminUsername" placeholder="Admin Username" required>
+      <input type="password" id="adminPassword" placeholder="Password" required>
+      <button id="adminLogin" class="login">Login</button>
+      <p id="adminMessage" class="message"></p>
+      <a href="index.html">Back</a>
+    </div>
+
+    <!-- Student Login Form -->
+    <div id="studentForm" class="form-box">
+      <input type="text" id="studentMatric" placeholder="Matric No" required>
+      <input type="password" id="studentPassword" placeholder="Password" required>
+      <button id="studentLogin" class="login">Login</button>
+      <p id="studentMessage" class="message"></p>
+      <a href="index.html">Back</a>
+      <p>Don't have an account? <a href="register.html">Register here</a></p>
+    </div>
+  </div>
+
+
+  <script>
+    // Toggle between admin and student forms
+const adminBtn = document.getElementById("adminBtn");
+const studentBtn = document.getElementById("studentBtn");
+const adminForm = document.getElementById("adminForm");
+const studentForm = document.getElementById("studentForm");
+
+adminBtn.addEventListener("click", () => {
+  adminBtn.classList.add("active");
+  studentBtn.classList.remove("active");
+  adminForm.classList.add("active");
+  studentForm.classList.remove("active");
+});
+
+studentBtn.addEventListener("click", () => {
+  studentBtn.classList.add("active");
+  adminBtn.classList.remove("active");
+  studentForm.classList.add("active");
+  adminForm.classList.remove("active");
+});
+
+// Admin login
+document.getElementById("adminLogin").addEventListener("click", async () => {
+  const username = document.getElementById("adminUsername").value.trim();
+  const password = document.getElementById("adminPassword").value.trim();
+  const message = document.getElementById("adminMessage");
+
+  message.textContent = "Logging in...";
+  message.className = "message";
+
+  const res = await fetch("http://localhost:3000/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ role: "admin", username, password })
+  });
+
+  const data = await res.json();
+
+  if (data.success) {
+    message.textContent = "✅ Login successful!";
+    message.classList.add("success");
+    setTimeout(() => window.location.href = "admin.html", 1500);
+  } else {
+    message.textContent = "❌ Login failed. Try again.";
+    message.classList.add("error");
+  }
+});
+
+// Student login
+document.getElementById("studentLogin").addEventListener("click", async () => {
+  const matric_no = document.getElementById("studentMatric").value.trim();
+  const password = document.getElementById("studentPassword").value.trim();
+  const message = document.getElementById("studentMessage");
+
+  message.textContent = "Logging in...";
+  message.className = "message";
+
+  const res = await fetch("http://localhost:3000/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ role: "student", username: matric_no, password })
+  });
+
+  const data = await res.json();
+
+  if (data.success) {
+    message.textContent = "✅ Login successful!";
+    message.classList.add("success");
+    setTimeout(() => window.location.href = "student.html", 1500);
+  } else {
+    message.textContent = "❌ Login failed. Try again.";
+    message.classList.add("error");
+  }
+});
+
+  </script>
+
+</body>
+</html>

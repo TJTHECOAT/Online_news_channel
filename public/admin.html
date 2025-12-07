@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus Connect | Admin</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<style>
+    /* ===== FUTURISTIC ADMIN DESIGN ===== */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #0d1b2a 0%, #000814 100%);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      text-align: center;
+      padding: 25px 0;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #5dade2;
+      background: rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 12px rgba(93, 173, 226, 0.3);
+    }
+
+    .admin-container {
+      width: 90%;
+      max-width: 900px;
+      margin-top: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(93, 173, 226, 0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    h2 {
+      color: #5dade2;
+      font-weight: 600;
+      margin-bottom: 15px;
+      border-left: 4px solid #5dade2;
+      padding-left: 10px;
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    input[type="text"], input[type="file"], select {
+      flex: 1;
+      min-width: 150px;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: #bbb;
+    }
+
+    button {
+      background: linear-gradient(90deg, #0077ff, #00d4ff);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+form{
+  color: black;
+}
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+    }
+
+    .posts {
+      margin-top: 20px;
+    }
+
+    .post-card {
+      background: rgba(255, 255, 255, 0.07);
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 0 8px rgba(93, 173, 226, 0.15);
+    }
+
+    .post-card h3 {
+      margin: 0;
+      color: #5dade2;
+    }
+
+    .post-card p {
+      margin-top: 5px;
+      color: #ddd;
+    }
+
+    footer {
+      text-align: center;
+      color: #888;
+      padding: 20px;
+      margin-top: auto;
+      font-size: 0.9rem;
+    }
+  </style>
+
+<body>
+  <nav>
+    <div class="logo">Campus Connect Admin 🛠️</div>
+    <div class="nav-links">
+      <a href="login.html">Logout</a>
+    </div>
+  </nav>
+
+  <section class="admin-container">
+    <h2>Post a New Update</h2>
+    <form id="postForm" enctype="multipart/form-data" method="POST" action="/api/posts">
+  <input type="text" name="title" id="title" placeholder="Post Title" required />
+  <textarea name="description" id="description" placeholder="Post Content" required></textarea>
+  <select name="category" id="department">
+    <option value="General">General</option>
+    <option value="Computer Science">Computer Science</option>
+    <option value="Engineering">Engineering</option>
+    <option value="Business">Business</option>
+    <option value="Law">Law</option>
+  </select>
+  <input type="file" name="image" id="image" accept="image/*" />
+  <button type="submit">Publish</button>
+</form>
+
+
+    <h3>Existing Posts</h3>
+    <div id="adminPosts" class="news-container"></div>
+  </section>
+
+  <script src="script.js"></script>
+<script>
+document.getElementById("postForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const form = e.target;
+  const formData = new FormData(form);
+
+  try {
+    const res = await fetch("/api/posts", {
+      method: "POST",
+      body: formData
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      // ✅ Popup alert
+      alert("✅ " + data.message);
+
+      // ⏳ Reload the page to show new post
+      setTimeout(() => {
+        window.location.reload();
+      }, 800);
+    } else {
+      alert("⚠️ Something went wrong: " + data.message);
+    }
+  } catch (err) {
+    console.error(err);
+    alert("❌ Server error: Could not create post");
+  }
+});
+</script>
+
+
+
+</body>
+</html>

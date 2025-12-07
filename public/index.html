@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus Connect | Home</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Campus Connect 🏫</div>
+    <div class="nav-links">
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+    </div>
+  </nav>
+
+  <!-- 🌟 Slideshow -->
+  <div class="slideshow-container">
+    <div class="slide fade">
+      <img src="images/slide1.jpg" alt="Campus Event">
+      <div class="caption">Welcome to Campus Connect — Stay Informed!</div>
+    </div>
+
+    <div class="slide fade">
+      <img src="images/slide2.jpg" alt="News Image">
+      <div class="caption">New Engineering Lab Inaugurated 🚀</div>
+    </div>
+
+    <div class="slide fade">
+      <img src="images/slide3.jpg" alt="Announcement">
+      <div class="caption">Business Seminar 2025 — Join the Movement 💼</div>
+    </div>
+
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    <div class="dots" id="dots"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
