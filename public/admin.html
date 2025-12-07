@@ -7,120 +7,214 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <style>
-    /* ===== FUTURISTIC ADMIN DESIGN ===== */
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top, #0d1b2a 0%, #000814 100%);
-      color: white;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+   /* ===========================================
+   FUTURISTIC ADMIN UI — RESPONSIVE + CLEAN
+=========================================== */
 
-    header {
-      width: 100%;
-      text-align: center;
-      padding: 25px 0;
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: #5dade2;
-      background: rgba(255, 255, 255, 0.05);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 0 12px rgba(93, 173, 226, 0.3);
-    }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-    .admin-container {
-      width: 90%;
-      max-width: 900px;
-      margin-top: 40px;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 0 20px rgba(93, 173, 226, 0.2);
-      backdrop-filter: blur(10px);
-    }
-
-    h2 {
-      color: #5dade2;
-      font-weight: 600;
-      margin-bottom: 15px;
-      border-left: 4px solid #5dade2;
-      padding-left: 10px;
-    }
-
-    form {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      margin-bottom: 30px;
-    }
-
-    input[type="text"], input[type="file"], select {
-      flex: 1;
-      min-width: 150px;
-      padding: 10px;
-      border: none;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      outline: none;
-    }
-
-    input::placeholder {
-      color: #bbb;
-    }
-
-    button {
-      background: linear-gradient(90deg, #0077ff, #00d4ff);
-      border: none;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-form{
-  color: black;
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: radial-gradient(circle at top, #0c1220 0%, #000814 100%);
+  color: #e8f1ff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
-    }
 
-    .posts {
-      margin-top: 20px;
-    }
+/* -------------------------------------------
+   HEADER
+------------------------------------------- */
+header {
+  width: 100%;
+  text-align: center;
+  padding: 28px 0;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #4dbcf7;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 20px rgba(77, 188, 247, 0.25);
+}
 
-    .post-card {
-      background: rgba(255, 255, 255, 0.07);
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      box-shadow: 0 0 8px rgba(93, 173, 226, 0.15);
-    }
+/* -------------------------------------------
+   MAIN CONTAINER
+------------------------------------------- */
+.admin-container {
+  width: 90%;
+  max-width: 950px;
+  margin-top: 40px;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 35px;
+  border-radius: 18px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 25px rgba(77, 188, 247, 0.25);
+  animation: fadeIn 0.5s ease;
+}
 
-    .post-card h3 {
-      margin: 0;
-      color: #5dade2;
-    }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
-    .post-card p {
-      margin-top: 5px;
-      color: #ddd;
-    }
+/* -------------------------------------------
+   HEADINGS
+------------------------------------------- */
+h2 {
+  color: #4dbcf7;
+  font-weight: 600;
+  margin-bottom: 18px;
+  border-left: 4px solid #4dbcf7;
+  padding-left: 12px;
+  font-size: 1.4rem;
+}
 
-    footer {
-      text-align: center;
-      color: #888;
-      padding: 20px;
-      margin-top: auto;
-      font-size: 0.9rem;
-    }
+/* -------------------------------------------
+   FORM STYLING
+------------------------------------------- */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 35px;
+  align-items: center;
+}
+
+input[type="text"],
+input[type="file"],
+select {
+  flex: 1;
+  min-width: 180px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #e8f1ff;
+  outline: none;
+  transition: 0.2s;
+}
+
+input[type="text"]:focus,
+select:focus {
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0 10px rgba(77, 188, 247, 0.4);
+}
+
+input::placeholder {
+  color: #bcd3e8;
+}
+
+/* -------------------------------------------
+   BUTTONS
+------------------------------------------- */
+button {
+  background: linear-gradient(90deg, #008cff, #00d4ff);
+  border: none;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 0 12px rgba(0, 180, 255, 0.3);
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 18px rgba(0, 212, 255, 0.6);
+}
+
+/* -------------------------------------------
+   POSTS LIST
+------------------------------------------- */
+.posts {
+  margin-top: 20px;
+}
+
+.post-card {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 18px;
+  border-radius: 14px;
+  margin-bottom: 18px;
+  box-shadow: 0 0 15px rgba(77, 188, 247, 0.15);
+  border-left: 4px solid #4dbcf7;
+  transition: 0.2s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(77, 188, 247, 0.3);
+}
+
+.post-card h3 {
+  margin: 0;
+  color: #4dbcf7;
+  font-weight: 600;
+}
+
+.post-card p {
+  margin-top: 8px;
+  color: #d4e6f7;
+  line-height: 1.5;
+}
+
+/* -------------------------------------------
+   FOOTER
+------------------------------------------- */
+footer {
+  text-align: center;
+  color: #8aa5bf;
+  padding: 25px 0;
+  margin-top: auto;
+  font-size: 0.9rem;
+}
+
+/* -------------------------------------------
+   RESPONSIVE DESIGN
+------------------------------------------- */
+@media (max-width: 768px) {
+  header {
+    font-size: 1.5rem;
+    padding: 20px;
+  }
+
+  .admin-container {
+    padding: 25px;
+  }
+
+  form {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  input[type="text"], select {
+    min-width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-container {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .post-card {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+}
+
   </style>
 
 <body>
